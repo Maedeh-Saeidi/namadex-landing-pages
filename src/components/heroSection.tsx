@@ -1,6 +1,32 @@
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import { useGetAllSections } from "../hooks/useGetAllSections";
+import { useGetImage } from "../hooks/useGetImage";
+import { useEffect, useState } from "react";
 
 export function HeroSection() {
+  const [enableImageApi, setEnabelImageApi] = useState<boolean>(false);
+  const id: number = 1;
+  const { isFetching, data } = useGetAllSections({
+    enabled: true,
+    queryKey: ["sections"],
+  });
+  useEffect(() => {
+    if (data?.[0].hasImage) setEnabelImageApi(true);
+  }, [data]);
+
+  const { image, isImageFetching, status } = useGetImage({
+    id,
+    queryKey: ["sectionImage", id],
+    enabled: enableImageApi,
+    onSuccess: (imageData) => {
+      console.log("Image data loaded successfully:", imageData);
+      setEnabelImageApi(false);
+    },
+    onError: (error) => {
+      console.error("Error fetching image data:", error);
+    },
+  });
+  console.log(image);
   return (
     <Flex flexDir={"row"} flex={1} height={"100vh"} backgroundColor={"#FFFCF7"}>
       <Flex flex={1}>
@@ -15,13 +41,13 @@ export function HeroSection() {
               نمادِکس
             </Text>
             <Text fontWeight={600} fontSize={"3xl"} color={"#363636"}>
-              تامین مالی واحدهای معدنی و صنعتی
+              {data?.[0].title}
             </Text>
             <Text color={"#4D4D4D"} fontWeight={600} fontSize={"4xl"}>
               با ما به دنیای جدید کسب و کار بپیوندید
             </Text>
             <Text color={"#6A7875"} fontWeight={500} fontSize={"xl"}>
-              قابلیت عرضه املاک، داراییهای کشاورزی و دیگر تولیدات شما
+              {data?.[0].description}
             </Text>
             <Text
               color={"#6A7875"}
