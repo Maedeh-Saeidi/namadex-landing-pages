@@ -49,7 +49,7 @@ export function useGetImage({
   });
   const getData = () => {
     if (data && data.status === 200) {
-      return data as any;
+      return data.data as any;
     }
     return undefined;
   };
@@ -57,6 +57,7 @@ export function useGetImage({
   return {
     isImageFetching: isFetching,
     image: getData(),
+    imageData: data,
     status,
   };
 }

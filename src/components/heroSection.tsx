@@ -1,31 +1,27 @@
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { useGetAllSections } from "../hooks/useGetAllSections";
 import { useGetImage } from "../hooks/useGetImage";
-import { useEffect, useState } from "react";
+// import { useEffect } from "react";
 
 export function HeroSection() {
-  const [enableImageApi, setEnabelImageApi] = useState<boolean>(false);
   const id: number = 1;
   const { isFetching, data } = useGetAllSections({
     enabled: true,
     queryKey: ["sections"],
   });
-  useEffect(() => {
-    if (data?.[0].hasImage) setEnabelImageApi(true);
-  }, [data]);
-
-  const { image, isImageFetching, status } = useGetImage({
+  const { image, isImageFetching, status, imageData } = useGetImage({
     id,
     queryKey: ["sectionImage", id],
-    enabled: enableImageApi,
+    enabled: true,
     onSuccess: (imageData) => {
       console.log("Image data loaded successfully:", imageData);
-      setEnabelImageApi(false);
     },
     onError: (error) => {
       console.error("Error fetching image data:", error);
     },
   });
+  //   const base64String = Buffer.from(binaryData, 'binary').toString('base64');
+  // const imageUrl = `data:image/png;base64,${base64String}`;
   console.log(image);
   return (
     <Flex flexDir={"row"} flex={1} height={"100vh"} backgroundColor={"#FFFCF7"}>
