@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface ISection {
   id: number;
   title: string;
@@ -16,4 +18,12 @@ export interface IUpdatedSection extends ISection {
 export interface IForm {
   email: string;
   message: string;
+}
+export interface IProps {
+  onSuccess?: (resp: any) => void;
+  onError?: (err: any) => void;
+}
+
+export interface DataProviderProps {
+  children: ReactNode;
 }

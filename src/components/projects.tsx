@@ -1,13 +1,25 @@
 import { Box } from "@chakra-ui/react";
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Project from "./project";
 import { Navigation, Pagination, Virtual } from "swiper/modules";
+import { useGetImage } from "../hooks/useGetImage";
+import { useData } from "../context/dataContext";
 
 export default function Projects() {
+  const id = 2;
+  const { data } = useData();
+  const { status, imageData } = useGetImage({
+    id,
+    queryKey: ["sectionImage", id],
+  });
+  const imageUrl: string =
+    status === "success"
+      ? `${imageData.config.baseURL}${imageData.config.url}`
+      : "";
+  console.log(data);
   return (
     <Box
-      backgroundImage="url('/images/background.png')"
+      backgroundImage={imageUrl}
       height={"100vh"}
       backgroundRepeat="no-repeat"
       backgroundSize="cover"

@@ -1,13 +1,10 @@
 import { Box, Button, Flex, Image, Spinner, Text } from "@chakra-ui/react";
-import { useGetAllSections } from "../hooks/useGetAllSections";
+import { useData } from "../context/dataContext";
 import { useGetImage } from "../hooks/useGetImage";
 
 export function HeroSection() {
   const id: number = 1;
-  const { isDataFetching, data } = useGetAllSections({
-    enabled: true,
-    queryKey: ["sections"],
-  });
+  const { data, isDataFetching } = useData();
   const { isImageFetching, status, imageData } = useGetImage({
     id,
     queryKey: ["sectionImage", id],

@@ -2,17 +2,34 @@ import { Flex, Image, Input, Stack, Button, Text } from "@chakra-ui/react";
 import { Field } from "./ui/field";
 import { IForm } from "../types";
 import { useForm } from "react-hook-form";
+import { usePostMessage } from "../hooks/usePostMessage";
+import { useData } from "../context/dataContext";
 
 export default function ContactUs() {
+  const { data } = useData();
+
   const {
     handleSubmit,
     register,
     formState: { errors },
+    reset,
   } = useForm<IForm>();
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const { handlePostMessage } = usePostMessage({
+    onSuccess() {
+      reset();
+    },
+  });
+  const onSubmit = handleSubmit((data) => {
+    handlePostMessage(data);
+    reset();
+  });
 
   return (
-    <Flex height={"70vh"} backgroundColor={"#1C549D"} flexDir={"row"}>
+    <Flex
+      height={"70vh"}
+      backgroundColor={data?.[0].jsonColor.primaryColor}
+      flexDir={"row"}
+    >
       <Flex flex={1} alignItems={"center"} justifyContent={"center"}>
         <Image src="/images/email.png" boxSize={"53%"} />
       </Flex>
