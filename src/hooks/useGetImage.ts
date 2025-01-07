@@ -5,7 +5,7 @@ import { request_getsection_image } from "../api/request";
 interface IProps {
   onSuccess?: (resp?: any) => void;
   onError?: (resp?: unknown) => void;
-  enabled: boolean;
+  enabled?: boolean;
   queryKey: any[];
   id: number;
 }
@@ -47,16 +47,9 @@ export function useGetImage({
       });
     },
   });
-  const getData = () => {
-    if (data && data.status === 200) {
-      return data.data as any;
-    }
-    return undefined;
-  };
 
   return {
     isImageFetching: isFetching,
-    image: getData(),
     imageData: data,
     status,
   };

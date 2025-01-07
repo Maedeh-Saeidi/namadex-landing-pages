@@ -1,7 +1,7 @@
 import { useToast } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { request_getsections } from "../api/request";
-import { ISection } from "../types";
+import { ISection, IUpdatedSection } from "../types";
 
 interface IProps {
   onSuccess?: (resp?: any) => void;
@@ -52,10 +52,19 @@ export function useGetAllSections({
     }
     return undefined;
   };
-
+  const x = getData();
+  const parser = (sections: ISection[] | undefined) => {
+    return sections?.map((s: ISection) => {
+      const color = JSON.parse(s.color);
+      return {
+        ...s,
+        jsonColor: color,
+      } as IUpdatedSection;
+    });
+  };
   return {
-    isFetching,
-    data: getData(),
+    isDataFetching: isFetching,
+    data: parser(x),
     status,
   };
 }
