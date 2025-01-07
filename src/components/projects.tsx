@@ -1,9 +1,12 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
 import Project from "./project";
-import { Navigation, Pagination, Virtual } from "swiper/modules";
+import { A11y, Pagination } from "swiper/modules";
 import { useGetImage } from "../hooks/useGetImage";
 import { useData } from "../context/dataContext";
+import { IPost } from "../types";
 
 export default function Projects() {
   const id = 2;
@@ -16,30 +19,42 @@ export default function Projects() {
     status === "success"
       ? `${imageData.config.baseURL}${imageData.config.url}`
       : "";
-  console.log(data);
   return (
     <Box
       backgroundImage={imageUrl}
-      height={"100vh"}
+      backgroundColor={data?.[0].jsonColor.secondaryColor}
+      height="100vh"
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
-      display={"flex"}
-      justifyContent={"center"}
       alignItems={"center"}
+      justifyContent={"center"}
+      display={"flex"}
+      gap={30}
     >
       <Box
-        // flex={1}
-        backgroundColor={"red"}
-        justifyContent={"center"}
-        alignItems={"center"}
+        flex={0.8}
+        flexDir={"column"}
+        textAlign={"center"}
+        // display={"flex"}
       >
-        <Swiper modules={[Virtual, Navigation, Pagination]}>
-          <SwiperSlide>
-            <Project />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Project />
-          </SwiperSlide>
+        <Text
+          fontWeight={700}
+          fontSize={40}
+          color={"#4D4D4D"}
+          paddingBottom={10}
+        >
+          پروژه ها
+        </Text>
+        <Swiper
+          slidesPerView={3}
+          pagination={{ clickable: true }}
+          modules={[Pagination, A11y]}
+        >
+          {data?.[1].posts.map((post: IPost) => (
+            <SwiperSlide key={post.id}>
+              <Project post={post} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </Box>
     </Box>

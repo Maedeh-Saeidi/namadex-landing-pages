@@ -12,3 +12,7 @@ export const request_getsection_image = async (id: number) => {
 export const request_contact = async (data: IForm) => {
   return await http.post("/v1/contact", data);
 };
+
+export const request_getPost_image = async (id?: number) => {
+  return await http.get(`/api/v1/section/post/${id}/image`);
+};
