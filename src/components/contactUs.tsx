@@ -1,9 +1,11 @@
-import { Flex, Image, Input, Stack, Button, Text } from "@chakra-ui/react";
+import { Flex, Image, Input, Stack, Button, Text, Box } from "@chakra-ui/react";
 import { Field } from "./ui/field";
 import { IForm } from "../types";
 import { useForm } from "react-hook-form";
 import { usePostMessage } from "../hooks/usePostMessage";
 import { useData } from "../context/dataContext";
+import SocialMedia, { SocialLinks } from "./socialMedia";
+import SectionButtons from "./sectionButtons";
 
 export default function ContactUs() {
   const { data } = useData();
@@ -30,8 +32,15 @@ export default function ContactUs() {
       backgroundColor={data?.[0].jsonColor.primaryColor}
       flexDir={"row"}
     >
-      <Flex flex={1} alignItems={"center"} justifyContent={"center"}>
+      <Flex
+        flex={1}
+        alignItems={"center"}
+        justifyContent={"center"}
+        flexDirection={"column"}
+      >
         <Image src="/images/email.png" boxSize={"53%"} />
+        <SocialMedia />
+        <SocialLinks />
       </Flex>
       <Flex flex={1} justifyContent={"center"} alignItems={"center"}>
         <Flex flexDir={"column"} gap={20} flex={0.5} paddingTop={10}>
@@ -69,6 +78,7 @@ export default function ContactUs() {
               </Button>
             </Stack>
           </form>
+          <SectionButtons />
         </Flex>
       </Flex>
     </Flex>
