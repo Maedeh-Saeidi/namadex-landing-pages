@@ -45,6 +45,7 @@ export function SocialLinks() {
       textAlign={"center"}
       paddingTop={30}
       textColor={"#FFFFFF"}
+      paddingBottom={{ base: 10, md: 0 }}
     >
       <Text
         as={"a"}

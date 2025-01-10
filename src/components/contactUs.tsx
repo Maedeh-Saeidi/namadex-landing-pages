@@ -28,9 +28,9 @@ export default function ContactUs() {
 
   return (
     <Flex
-      height={"70vh"}
+      height={{ base: "95vh", md: "70vh" }}
       backgroundColor={data?.[0].jsonColor.primaryColor}
-      flexDir={"row"}
+      flexDir={{ base: "column-reverse", md: "row" }}
     >
       <Flex
         flex={1}
@@ -38,17 +38,34 @@ export default function ContactUs() {
         justifyContent={"center"}
         flexDirection={"column"}
       >
-        <Image src="/images/email.png" boxSize={"53%"} />
+        <Image
+          src="/images/email.png"
+          boxSize={{ base: "100%", md: 350, lg: "55%", "2xl": "60%" }}
+        />
         <SocialMedia />
         <SocialLinks />
       </Flex>
       <Flex flex={1} justifyContent={"center"} alignItems={"center"}>
-        <Flex flexDir={"column"} gap={20} flex={0.5} paddingTop={10}>
-          <Text color={"#FFFFFF"} dir="rtl" fontWeight={600} fontSize={30}>
+        <Flex
+          flexDir={"column"}
+          gap={{ base: 10, md: 20 }}
+          flex={{ base: 0.8, md: 0.1, lg: 0.5 }}
+          paddingTop={10}
+        >
+          <Text
+            color={"#FFFFFF"}
+            dir="rtl"
+            fontWeight={600}
+            fontSize={{ base: "2xl", md: "3xl", lg: "4xl", "2xl": "5xl" }}
+          >
             با ما در ارتباط باشید
           </Text>
           <form onSubmit={onSubmit}>
-            <Stack gap="4" maxW="xl">
+            <Stack
+              gap="4"
+              maxW={{ base: "xl", md: "lg", lg: "xl", "2xl": "2xl" }}
+              // paddingLeft={{ base: 10, md: 0 }}
+            >
               <Field invalid={!!errors.email}>
                 <Input
                   color={"#999999"}

@@ -6,7 +6,11 @@ import { useData } from "../context/dataContext";
 export default function Project({ post }: { post: IPost }) {
   const { data, isDataFetching } = useData();
   return (
-    <Flex rounded={"3xl"} maxW={380} paddingTop={post.id === 2 ? 20 : 0}>
+    <Flex
+      rounded={"3xl"}
+      maxW={{ base: 300, md: 400, lg: 460, "2xl": 600 }}
+      paddingTop={post.id === 2 ? { base: 0, md: 20, lg: 20 } : 0}
+    >
       {isDataFetching ? (
         <Spinner color={data?.[0].jsonColor.primaryColor} />
       ) : (
@@ -30,10 +34,17 @@ export default function Project({ post }: { post: IPost }) {
             src={API_URL + `/api/v1/section/post/${post.id}/icon`}
             width={"100"}
           ></Image>
-          <Text fontWeight={600} fontSize={23}>
+          <Text
+            fontWeight={600}
+            fontSize={{ base: "sm", md: "xl", "2xl": "3xl" }}
+          >
             {post.title}
           </Text>
-          <Text fontWeight={400} fontSize={14} paddingBottom={8}>
+          <Text
+            fontWeight={400}
+            fontSize={{ base: "xs", md: "lg", "2xl": "2xl" }}
+            paddingBottom={8}
+          >
             {post.link}
           </Text>
         </Flex>

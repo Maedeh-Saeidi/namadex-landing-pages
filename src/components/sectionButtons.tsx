@@ -8,7 +8,12 @@ export default function SectionButtons() {
     { title: "ارتباط با ما" },
   ];
   return (
-    <Flex flexDirection={"row"} gap={2}>
+    <Flex
+      maxW={{ md: 300, lg: "5xl" }}
+      flexDirection={"row"}
+      gap={{ md: 0, lg: 2 }}
+      display={{ base: "none", md: "flex" }}
+    >
       {links.map((link) => (
         <ActionButtons key={link.title} title={link.title} href={link?.href} />
       ))}
@@ -29,6 +34,7 @@ export function ActionButtons({
       variant="plain"
       color="#FFFFFF"
       _hover={{ transform: "scale(1.1)" }}
+      fontSize={{ md: "sm", lg: "lg", "2xl": "xl" }}
     >
       {title}
     </Button>
