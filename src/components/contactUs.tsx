@@ -6,6 +6,7 @@ import { usePostMessage } from "../hooks/usePostMessage";
 import { useData } from "../context/DataContext";
 import SocialMedia, { SocialLinks } from "./socialMedia";
 import SectionButtons from "./sectionButtons";
+import { API_URL } from "../api/CONSTANTS";
 
 export default function ContactUs() {
   const { data } = useData();
@@ -40,7 +41,7 @@ export default function ContactUs() {
         flexDirection={"column"}
       >
         <Image
-          src="/images/email.png"
+          src={API_URL + `/api/v1/section/3/image`}
           boxSize={{ base: "100%", md: 350, lg: "55%", "2xl": "60%" }}
         />
         <SocialMedia />
