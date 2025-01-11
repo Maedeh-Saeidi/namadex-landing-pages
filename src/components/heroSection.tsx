@@ -89,6 +89,10 @@ export function HeroSection() {
                 paddingTop={{ base: "5%", md: "18%" }}
               >
                 <Button
+                  as="a"
+                  href="https://app.namadex.ir/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   backgroundColor={data?.[0].jsonColor.primaryColor}
                   color={"#FFFFFF"}
                   padding={5}
