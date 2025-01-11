@@ -2,10 +2,10 @@ import { Button, Flex } from "@chakra-ui/react";
 
 export default function SectionButtons() {
   const links = [
-    { title: "سرویس ها", href: "/services" },
-    { title: "داراییها", href: "/assets" },
-    { title: "درباره ی ما", href: "/about" },
-    { title: "ارتباط با ما" },
+    { title: "پروژه ها", href: "#projects" },
+    { title: "داراییها", href: "https://namadex.ir/#Services" },
+    { title: "درباره ی ما", href: "#heroSection" },
+    { title: "ارتباط با ما", href: "#contactUs" },
   ];
   return (
     <Flex

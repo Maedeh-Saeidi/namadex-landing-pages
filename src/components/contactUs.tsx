@@ -1,9 +1,9 @@
-import { Flex, Image, Input, Stack, Button, Text, Box } from "@chakra-ui/react";
+import { Flex, Image, Input, Stack, Button, Text } from "@chakra-ui/react";
 import { Field } from "./ui/field";
 import { IForm } from "../types";
 import { useForm } from "react-hook-form";
 import { usePostMessage } from "../hooks/usePostMessage";
-import { useData } from "../context/dataContext";
+import { useData } from "../context/DataContext";
 import SocialMedia, { SocialLinks } from "./socialMedia";
 import SectionButtons from "./sectionButtons";
 
@@ -28,6 +28,7 @@ export default function ContactUs() {
 
   return (
     <Flex
+      id="contactUs"
       height={{ base: "95vh", md: "70vh" }}
       backgroundColor={data?.[0].jsonColor.primaryColor}
       flexDir={{ base: "column-reverse", md: "row" }}

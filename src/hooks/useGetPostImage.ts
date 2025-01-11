@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { useToast } from "@chakra-ui/react";
 import { request_getPost_image } from "../api/request";
 
@@ -45,7 +45,7 @@ export function useGetPostImage({
         isClosable: true,
       });
     },
-  });
+  } as UseQueryOptions<any, any>);
   return {
     isPostImageFetching: isFetching,
     postImage: data,

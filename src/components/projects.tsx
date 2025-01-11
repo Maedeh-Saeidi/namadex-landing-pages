@@ -1,12 +1,14 @@
 import { Box, Text } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
 import Project from "./project";
 import { A11y, Pagination } from "swiper/modules";
 import { useGetImage } from "../hooks/useGetImage";
-import { useData } from "../context/dataContext";
+import { useData } from "../context/DataContext";
 import { IPost } from "../types";
+//@ts-expect-error some error
+import "swiper/css";
+//@ts-expect-error some error
+import "swiper/css/pagination";
 
 export default function Projects() {
   const id = 2;
@@ -21,6 +23,7 @@ export default function Projects() {
       : "";
   return (
     <Box
+      id="projects"
       // maxWidth={"100%"}
       backgroundImage={imageUrl}
       backgroundColor={data?.[0].jsonColor.secondaryColor}

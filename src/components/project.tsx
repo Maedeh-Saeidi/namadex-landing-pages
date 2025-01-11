@@ -1,7 +1,7 @@
 import { Flex, Image, Spinner, Text } from "@chakra-ui/react";
 import { API_URL } from "../api/CONSTANTS";
 import { IPost } from "../types";
-import { useData } from "../context/dataContext";
+import { useData } from "../context/DataContext";
 
 export default function Project({ post }: { post: IPost }) {
   const { data, isDataFetching } = useData();

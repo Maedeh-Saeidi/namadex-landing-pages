@@ -1,5 +1,5 @@
 import { useToast } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { request_getsection_image } from "../api/request";
 
 interface IProps {
@@ -46,7 +46,7 @@ export function useGetImage({
         isClosable: true,
       });
     },
-  });
+  } as UseQueryOptions<any, any>);
 
   return {
     isImageFetching: isFetching,

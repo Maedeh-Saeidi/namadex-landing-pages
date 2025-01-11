@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Image, Spinner, Text } from "@chakra-ui/react";
-import { useData } from "../context/dataContext";
+import { useData } from "../context/DataContext";
 import { useGetImage } from "../hooks/useGetImage";
 
 export function HeroSection() {
@@ -15,6 +15,7 @@ export function HeroSection() {
       : "";
   return (
     <Flex
+      id="heroSection"
       flexDir={{ base: "column", md: "column", lg: "row" }}
       flex={1}
       height={{ base: "100vh", md: "100vh", "2xl": "100vh" }}

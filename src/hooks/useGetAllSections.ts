@@ -1,5 +1,5 @@
 import { useToast } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { request_getsections } from "../api/request";
 import { ISection, IUpdatedSection } from "../types";
 
@@ -45,7 +45,7 @@ export function useGetAllSections({
         isClosable: true,
       });
     },
-  });
+  } as UseQueryOptions<any, any>);
   const getData = () => {
     if (data && data.status === 200) {
       return data.data.data as ISection[];
