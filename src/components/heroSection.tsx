@@ -17,7 +17,7 @@ export function HeroSection() {
     <Flex
       flexDir={{ base: "column", md: "column", lg: "row" }}
       flex={1}
-      height={{ base: "100vh", md: "100vh", "2xl": "80vh" }}
+      height={{ base: "100vh", md: "100vh", "2xl": "100vh" }}
       backgroundColor={data?.[0].jsonColor.secondaryColor}
     >
       <Flex flex={1}>
@@ -28,7 +28,7 @@ export function HeroSection() {
             <Image
               src={imageUrl}
               alt="hero page"
-              boxSize={{ base: "100%", md: "80%", "2xl": "100%" }}
+              boxSize={{ base: "100%", md: "80%", "2xl": "90%" }}
             />
           ) : (
             <Text>لطفا مجدد بارگزاری کنید</Text>
