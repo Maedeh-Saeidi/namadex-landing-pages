@@ -31,6 +31,16 @@ export interface DataProviderProps {
   children: ReactNode;
 }
 
+export interface IPage {
+  id: number;
+  title: string;
+  imageTitle: string;
+  description: string;
+  link: string;
+  page: string;
+  images: string[];
+}
+
 export interface IPost {
   categories: string[];
   description: string;
@@ -40,4 +50,5 @@ export interface IPost {
   link: string;
   sectionId: number;
   title: string;
+  page?: IPage;
 }
