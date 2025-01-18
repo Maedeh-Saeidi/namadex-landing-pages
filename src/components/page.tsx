@@ -1,72 +1,85 @@
 import { useData } from "../context/DataContext";
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, Image, Text } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 //@ts-expect-error some error
 import "swiper/css";
 //@ts-expect-error some error
 import "swiper/css/pagination";
+import { IPage } from "../types";
+import { API_URL } from "../api/CONSTANTS";
 
-export default function Page() {
-  const pageId:number = 21;
+export default function Page({
+  page,
+  onClose,
+}: {
+  page?: IPage;
+  onClose: () => void;
+}) {
   const { data } = useData();
-  console.log(data);
-  //get your data from the parent page
   return (
-    <Flex flex={1} height={"100vh"} flexDir={"column"}>
-      <Flex flex={1} backgroundColor={"pink"}>
-        <>
-          <Swiper
-            spaceBetween={30}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Pagination]}
-            style={{ width: "100%", height: "100%" }}
-          >
-            <SwiperSlide>Slide 1</SwiperSlide>
-            <SwiperSlide>Slide 2</SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
-            <SwiperSlide>Slide 4</SwiperSlide>
-            <SwiperSlide>Slide 5</SwiperSlide>
-            <SwiperSlide>Slide 6</SwiperSlide>
-            <SwiperSlide>Slide 7</SwiperSlide>
-            <SwiperSlide>Slide 8</SwiperSlide>
-            <SwiperSlide>Slide 9</SwiperSlide>
-          </Swiper>
-        </>
+    <Flex flexDir={"column"}>
+      <Flex backgroundColor={"transparent"}>
+        <Swiper
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          // style={{ width: "100%", height: "100%" }}
+        >
+          {page?.images.map((img) => (
+            <SwiperSlide style={{ position: "relative" }}>
+              <Text
+                fontSize={{ base: "5xl", md: "4xl" }}
+                fontWeight={700}
+                color={"#FFFFFF"}
+                position={"absolute"}
+                right={{ base: 10, md: 100 }}
+                top={{ base: 5, md: 20 }}
+              >
+                {page.imageTitle}
+              </Text>
+              <Image
+                height={{ base: "20rem", md: "30rem" }}
+                width={"100%"}
+                // height={"100%"}
+                src={
+                  API_URL +
+                  `/api/v1/section/post/page/${page?.id}/image?imageName=${img}`
+                }
+                alt={`Image for page ${img}`}
+              ></Image>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Flex>
-      <Flex
-        flex={1}
-        // backgroundColor={"blue"}
-        flexDir={"column"}
-      >
-        <Flex textAlign={"right"} flexDir={"column"} padding={20} gap={10}>
+      <Flex flexDir={"column"}>
+        <Flex
+          textAlign={"right"}
+          flexDir={"column"}
+          padding={{ base: 5, md: 20 }}
+          gap={{ base: 5, md: 10 }}
+        >
           <Text
-            fontSize={"5xl"}
+            fontSize={"4xl"}
             color={data?.[0].jsonColor.primaryColor}
             fontWeight={600}
           >
-            شرکت جالیزان
+            {page?.title}
           </Text>
-          <Text color={"#000000"} fontWeight={500}>
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-            استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
-            ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-            کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی
-            در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را
-            می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
-            الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این
-            صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و
-            شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای
-            اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد
-            استفاده قرار گیرد
+          <Text
+            color={"#000000"}
+            fontWeight={500}
+            fontSize={{ base: "xs", md: "lg" }}
+          >
+            {page?.description}
           </Text>
         </Flex>
-        <Box paddingLeft={20}>
+        <Flex paddingLeft={20} gap={2} alignItems={"center"}>
           <Button
             as="a"
-            href={`https://api.namadex.ir/api/v1/section/post/page/${pageId}/paper`}
+            href={API_URL + `/api/v1/section/post/page/${page?.id}/paper`}
             target="_blank"
             download
             variant={"outline"}
@@ -74,9 +87,19 @@ export default function Page() {
             borderWidth={2}
             padding={5}
           >
-            مشاهده نقشه
+            دانلود سپیدنامه
           </Button>
-        </Box>
+          <Button
+            colorScheme={data?.[0].jsonColor.primaryColor}
+            onClick={onClose}
+            variant={"outline"}
+            borderColor={data?.[0].jsonColor.primaryColor}
+            borderWidth={2}
+            padding={5}
+          >
+            بستن
+          </Button>
+        </Flex>
       </Flex>
     </Flex>
   );

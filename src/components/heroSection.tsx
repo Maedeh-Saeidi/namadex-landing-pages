@@ -36,6 +36,7 @@ export function HeroSection() {
     <>
       {section ? (
         <Flex
+          padding={10}
           id="heroSection"
           flexDir={{ base: "column", md: "column", lg: "row" }}
           flex={1}
@@ -43,14 +44,14 @@ export function HeroSection() {
           backgroundColor={section.jsonColor.secondaryColor}
         >
           <Flex flex={1}>
-            <Box position={"absolute"} left={-170} top={-4}>
+            <Box position={"absolute"} left={-120} top={-4}>
               {isImageFetching ? (
                 <Spinner color={section.jsonColor.primaryColor} />
               ) : status === "success" ? (
                 <Image
                   src={imageUrl}
                   alt="hero page"
-                  boxSize={{ base: "100%", md: "80%", "2xl": "90%" }}
+                  boxSize={{ base: "90%", md: "80%", "2xl": "90%" }}
                 />
               ) : (
                 <Text>لطفا مجدد بارگزاری کنید</Text>
@@ -73,16 +74,16 @@ export function HeroSection() {
                     fontWeight={600}
                     fontSize={{
                       base: "4xl",
-                      md: "5xl",
-                      lg: "6xl",
-                      "2xl": "7xl",
+                      md: "4xl",
+                      lg: "5xl",
+                      "2xl": "6xl",
                     }}
                   >
                     نمادِکس
                   </Text>
                   <Text
                     fontWeight={600}
-                    fontSize={{ base: "2xl", md: "3xl" }}
+                    fontSize={{ base: "2xl", md: "2xl" }}
                     color={"#363636"}
                   >
                     {section.title}
@@ -90,21 +91,21 @@ export function HeroSection() {
                   <Text
                     color={"#4D4D4D"}
                     fontWeight={600}
-                    fontSize={{ base: "xl", md: "4xl" }}
+                    fontSize={{ base: "xl", md: "2xl" }}
                   >
                     با ما به دنیای جدید کسب و کار بپیوندید
                   </Text>
                   <Text
                     color={"#6A7875"}
                     fontWeight={500}
-                    fontSize={{ base: "sm", md: "xl", "2xl": "2xl" }}
+                    fontSize={{ base: "xs", md: "lg", "2xl": "2xl" }}
                   >
                     {section.description}
                   </Text>
                   <Text
                     color={"#6A7875"}
                     fontWeight={500}
-                    fontSize={{ base: "sm", md: "xl", "2xl": "2xl" }}
+                    fontSize={{ base: "xs", md: "lg", "2xl": "2xl" }}
                     paddingBottom={"10"}
                   >
                     در شرکت ما
@@ -112,7 +113,7 @@ export function HeroSection() {
                   <Flex
                     flex={1}
                     alignSelf={"flex-end"}
-                    paddingTop={{ base: "5%", md: "18%" }}
+                    paddingTop={{ base: 0, md: "10%" }}
                   >
                     <Button
                       as="a"
@@ -123,7 +124,7 @@ export function HeroSection() {
                       color={"#FFFFFF"}
                       padding={5}
                     >
-                      !ثبت نام کنید
+                      وارد اپلیکیشن شوید
                     </Button>
                   </Flex>
                 </Flex>

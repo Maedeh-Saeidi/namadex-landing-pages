@@ -74,7 +74,7 @@ export default function ContactUs() {
           <Flex flex={1} justifyContent={"center"} alignItems={"center"}>
             <Flex
               flexDir={"column"}
-              gap={{ base: 10, md: 20 }}
+              gap={{ base: 10, md: 10 }}
               flex={{ base: 0.8, md: 0.1, lg: 0.5 }}
               paddingTop={10}
             >
@@ -82,13 +82,13 @@ export default function ContactUs() {
                 color={"#FFFFFF"}
                 dir="rtl"
                 fontWeight={600}
-                fontSize={{ base: "2xl", md: "3xl", lg: "4xl", "2xl": "5xl" }}
+                fontSize={{ base: "2xl", md: "2xl", lg: "3xl", "2xl": "5xl" }}
               >
                 با ما در ارتباط باشید
               </Text>
               <form onSubmit={onSubmit}>
                 <Stack
-                  gap="4"
+                  gap="3"
                   maxW={{ base: "xl", md: "lg", lg: "xl", "2xl": "2xl" }}
                   // paddingLeft={{ base: 10, md: 0 }}
                 >

@@ -6,7 +6,7 @@ interface IProps {
   onSuccess?: (resp?: any) => void;
   onError?: (resp?: unknown) => void;
   enabled?: boolean;
-  queryKey: any[];
+  queryKey?: any[];
   id?: number;
 }
 

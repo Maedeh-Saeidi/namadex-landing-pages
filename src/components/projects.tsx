@@ -65,7 +65,7 @@ export default function Projects() {
           >
             <Text
               fontWeight={700}
-              fontSize={{ base: "2xl", md: "3xl", lg: "4xl", "2xl": "5xl" }}
+              fontSize={{ base: "2xl", md: "3xl", lg: "3xl", "2xl": "5xl" }}
               color={"#4D4D4D"}
               paddingBottom={10}
             >
@@ -87,9 +87,9 @@ export default function Projects() {
               pagination={{ clickable: true }}
               modules={[Pagination, A11y]}
             >
-              {section.posts.map((post: IPost) => (
+              {section.posts.map((post: IPost, index: number) => (
                 <SwiperSlide key={post.id}>
-                  <Project post={post} />
+                  <Project post={post} index={index} />
                 </SwiperSlide>
               ))}
             </Swiper>

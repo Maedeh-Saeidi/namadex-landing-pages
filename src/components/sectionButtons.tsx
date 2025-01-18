@@ -34,7 +34,7 @@ export function ActionButtons({
       variant="plain"
       color="#FFFFFF"
       _hover={{ transform: "scale(1.1)" }}
-      fontSize={{ md: "sm", lg: "lg", "2xl": "xl" }}
+      fontSize={{ md: "sm", lg: "sm", "2xl": "xl" }}
     >
       {title}
     </Button>
