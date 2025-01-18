@@ -5,7 +5,7 @@ export const request_getsections = async () => {
   return await http.get("/api/v1/section");
 };
 
-export const request_getsection_image = async (id: number) => {
+export const request_getsection_image = async (id?: number) => {
   return await http.get(`/api/v1/section/${id}/image`);
 };
 

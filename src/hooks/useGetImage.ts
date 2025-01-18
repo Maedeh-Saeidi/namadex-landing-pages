@@ -7,7 +7,7 @@ interface IProps {
   onError?: (resp?: unknown) => void;
   enabled?: boolean;
   queryKey: any[];
-  id: number;
+  id?: number;
 }
 
 export function useGetImage({
