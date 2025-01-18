@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 export default function Page() {
+  const pageId:number = 21;
   const { data } = useData();
   console.log(data);
   //get your data from the parent page
