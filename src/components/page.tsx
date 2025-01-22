@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { useData } from "../context/DataContext";
 import { Button, Flex, Image, Text } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 //@ts-expect-error some error
 import "swiper/css";
 //@ts-expect-error some error
 import "swiper/css/pagination";
+//@ts-expect-error some error
+import "swiper/css/navigation";
 import { IPage } from "../types";
 import { API_URL } from "../api/CONSTANTS";
 
@@ -17,43 +20,95 @@ export default function Page({
   onClose: () => void;
 }) {
   const { data } = useData();
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [fullScreenImage, setFullScreenImage] = useState("");
+
+  const handleImageClick = (img: string) => {
+    setIsFullScreen(!isFullScreen);
+    setFullScreenImage(img);
+  };
+
   return (
     <Flex flexDir={"column"}>
-      <Flex backgroundColor={"transparent"}>
+      <Flex backgroundColor={data?.[0].jsonColor.primaryColor}>
         <Swiper
+          effect={"coverflow"}
           spaceBetween={30}
+          navigation={true}
           pagination={{
             clickable: true,
           }}
-          modules={[Pagination]}
-          // style={{ width: "100%", height: "100%" }}
+          loop={true}
+          modules={[Pagination, Navigation]}
         >
           {page?.images.map((img) => (
-            <SwiperSlide style={{ position: "relative" }}>
-              <Text
-                fontSize={{ base: "5xl", md: "4xl" }}
-                fontWeight={700}
-                color={"#FFFFFF"}
-                position={"absolute"}
-                right={{ base: 10, md: 100 }}
-                top={{ base: 5, md: 20 }}
-              >
-                {page.imageTitle}
-              </Text>
-              <Image
-                height={{ base: "20rem", md: "30rem" }}
+            <SwiperSlide key={img}>
+              <Flex
                 width={"100%"}
-                // height={"100%"}
-                src={
-                  API_URL +
-                  `/api/v1/section/post/page/${page?.id}/image?imageName=${img}`
-                }
-                alt={`Image for page ${img}`}
-              ></Image>
+                height={"100%"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                position={"relative"}
+              >
+                <Flex position={"relative"}>
+                  <Image
+                    bgPosition={"center"}
+                    maxHeight={{ base: "25rem", md: "30rem" }}
+                    src={
+                      API_URL +
+                      `/api/v1/section/post/page/${page?.id}/image?imageName=${img}`
+                    }
+                    alt={`Image for page ${img}`}
+                    onClick={() => handleImageClick(img)}
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                  <Text
+                    fontSize={{ base: "5xl", md: "4xl" }}
+                    fontWeight={700}
+                    color={"#FFFFFF"}
+                    top={10}
+                    right={10}
+                    position={"absolute"}
+                  >
+                    {page.imageTitle}
+                  </Text>
+                </Flex>
+              </Flex>
             </SwiperSlide>
           ))}
         </Swiper>
       </Flex>
+
+      {isFullScreen && (
+        <Flex
+          position="fixed"
+          top={0}
+          left={0}
+          width="100vw"
+          height="100vh"
+          backgroundColor="rgba(0, 0, 0, 0.9)"
+          zIndex={9999}
+          justifyContent="center"
+          alignItems="center"
+          onClick={() => setIsFullScreen(false)}
+        >
+          <Image
+            src={
+              API_URL +
+              `/api/v1/section/post/page/${page?.id}/image?imageName=${fullScreenImage}`
+            }
+            alt={`Full-screen image for page ${fullScreenImage}`}
+            style={{
+              maxWidth: "100%",
+              maxHeight: "100%",
+              objectFit: "contain",
+            }}
+          />
+        </Flex>
+      )}
+
       <Flex flexDir={"column"}>
         <Flex
           textAlign={"right"}

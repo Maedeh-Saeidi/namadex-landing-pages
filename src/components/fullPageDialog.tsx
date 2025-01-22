@@ -4,17 +4,17 @@ import {
   ModalContent,
   ModalBody,
   ModalFooter,
-} from "@chakra-ui/react";
-import { ReactNode } from "react";
+} from '@chakra-ui/react'
+import { ReactNode } from 'react'
 
 export default function FullPageDialog({
   isOpen,
   onClose,
   children,
 }: {
-  isOpen: boolean;
-  onClose: () => void;
-  children: ReactNode;
+  isOpen: boolean
+  onClose: () => void
+  children: ReactNode
 }) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="full">
@@ -24,5 +24,5 @@ export default function FullPageDialog({
         <ModalFooter></ModalFooter>
       </ModalContent>
     </Modal>
-  );
+  )
 }

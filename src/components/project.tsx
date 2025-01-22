@@ -56,7 +56,7 @@ export default function Project({
               paddingTop={10}
               src={API_URL + `/api/v1/section/post/${post.id}/icon`}
               width={"100"}
-            ></Image>
+            />
             <Text
               fontWeight={600}
               fontSize={{ base: "sm", md: "xl", "2xl": "3xl" }}
